@@ -8,7 +8,7 @@ export default function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [mining, setMining] = useState(false);
   const [waves, setWaves] = useState([]);
-  const [waveMessage, setWaveMessage] = useState("<Your message here...>");
+  const [waveMessage, setWaveMessage] = useState("Sua mensagem coloque aqui.");
   const contractAddress = "0x27C85420049B016C0070D02F68844A1567455B6C";
   const contractAbi = abi.abi;
 
@@ -137,22 +137,22 @@ export default function App() {
 
       <div className="dataContainer">
         <div className="header">
-        👋 Hey there!
+        👋 Olá Pessoal!
         </div>
 
         <div className="bio">
-        I am Robert and I really love this tutorial.
-        Connect your Ethereum wallet and wave at me!
+        Eu sou o Luigi e já trabalhei com música, sabia? Legal, né? 
+        Conecte sua carteira Ethereum wallet e me manda um tchauzinho!
         </div>
 
         <button className="waveButton" onClick={wave} disabled={mining}>
-          {mining ? "Waving..." : "Wave at Me"}
+          {mining ? "Enviando..." : "Envie um tchauzinho! 🌟"}
         </button>
         <input className="waveMessage" value={waveMessage} onChange={handleMsgChange}></input>
         {!currentAccount && (
-            <button className="connectButton" onClick={connectWallet}>
-              Connect Wallet
-            </button>
+            <button className="waveButton" onClick={connectWallet}>
+            Conectar carteira
+          </button>
         )}
         {waves.map((wave, index) => (
           <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
