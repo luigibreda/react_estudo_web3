@@ -81,6 +81,8 @@ export default function App() {
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractAbi, signer);
         const result = await wavePortalContract.getWaves(signer.getAddress());
+        console.log(result);
+        console.dir(result);
         const {0: messages, 1: timestamps} = result;
         let wavesCleaned = [];
         for (let i = 0; i < messages.length; i++) {
