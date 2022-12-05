@@ -6,7 +6,7 @@ import abi from "./utils/WavePortal.json"
 export default function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
-  const contractAddress = "0x077245Cd5A10BFb13dc172D33f908197fA1a228E";
+  const contractAddress = "0xE8b86f49b383151F1AE164e68b468f1e6713cB1b";
   const contractABI = abi.abi;
   
   const checkIfWalletIsConnected = async () => {
