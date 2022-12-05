@@ -109,11 +109,6 @@ export default function App() {
         </div>
 
         {currentAccount && (
-        <button className="waveButton" onClick={wave}>
-          Mandar Tchauzinho 🌟
-        </button>)}
-
-        {currentAccount && (
         <button className="waveButton" onClick={wave} disabled={mining}>
           {mining ? "Enviando..." : "Envie um tchauzinho! 🌟"}
         </button>)}
