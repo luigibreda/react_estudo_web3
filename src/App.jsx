@@ -3,9 +3,6 @@ import { ethers } from "ethers";
 import './App.css';
 import abi from "./utils/WavePortal.json";
 
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-
 export default function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
@@ -82,7 +79,6 @@ export default function App() {
     try {
       const { ethereum } = window;
 
-      
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
@@ -130,8 +126,6 @@ export default function App() {
         Eu sou o danicuki e já trabalhei com música, sabia? Legal, né? Conecte sua carteira  Ethereum wallet e me manda um tchauzinho!
         </div>
 
-        {true ? <div className="header"><br/><CircularProgress id="progressBar" /></div> : ''}
-        
         {currentAccount && (
         <button className="waveButton" onClick={wave2}>
           Ler os Tchauzinho 🌟
