@@ -38,7 +38,7 @@ export default function App() {
   }
 
   /**
-  * Implemente aqui o seu método connectWallet
+  * Implemente aqui o seu método connectWallets
   */
   const connectWallet = async () => {
     try {
