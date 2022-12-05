@@ -90,6 +90,7 @@ export default function App() {
             message: messages[i],
             timestamp: timestamps[i],
           });
+          console.log(messages);
         }
         setWaves(wavesCleaned);
       }
