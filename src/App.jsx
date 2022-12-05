@@ -111,12 +111,13 @@ export default function App() {
         {currentAccount && (
         <button className="waveButton" onClick={wave}>
           Mandar Tchauzinho 🌟
-        </button>
+        </button>)}
 
+        {currentAccount && (
         <button className="waveButton" onClick={wave} disabled={mining}>
           {mining ? "Enviando..." : "Envie um tchauzinho! 🌟"}
-        </button>
-        )}
+        </button>)}
+        
 
         {/*
         * Se não existir currentAccount, apresente este botão
