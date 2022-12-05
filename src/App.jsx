@@ -3,9 +3,6 @@ import { ethers } from "ethers";
 import './App.css';
 import abi from "./utils/WavePortal.json"
 
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-
 export default function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
@@ -110,18 +107,14 @@ export default function App() {
         Eu sou o danicuki e já trabalhei com música, sabia? Legal, né? Conecte sua carteira  Ethereum wallet e me manda um tchauzinho!
         </div>
 
-        {currentAccount && (
-
         <button className="waveButton" onClick={wave}>
           Mandar Tchauzinho 🌟
         </button>
 
         <button className="waveButton" onClick={wave} disabled={mining}>
-          {mining ? "Waving..." : "Mandar Tchauzinho 🌟"}
+          {mining ? "Waving..." : "Wave at Me"}
         </button>
-
-        )}
-
+        
         {/*
         * Se não existir currentAccount, apresente este botão
         */}
