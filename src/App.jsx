@@ -9,7 +9,7 @@ export default function App() {
   const [mining, setMining] = useState(false);
   const [waves, setWaves] = useState([]);
   const [waveMessage, setWaveMessage] = useState("<Your message here...>");
-  const contractAddress = "0x7f1bA6e8A664139115C58F70f07374Fa978b08Fd";
+  const contractAddress = "0x27C85420049B016C0070D02F68844A1567455B6C";
   const contractAbi = abi.abi;
 
   const checkIfWalletIsConnected = async () => {
@@ -160,7 +160,7 @@ export default function App() {
               Conectar carteira
             </button>
         )}
-        
+
         {waves.map((wave, index) => (
           <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
               <div>Time: {new Date(wave.timestamp*1000).toISOString()}</div>
