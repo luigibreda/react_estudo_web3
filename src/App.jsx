@@ -67,7 +67,7 @@ export default function App() {
 
         let count = await wavePortalContract.getTotalWaves();
         console.log("Recuperado o número de tchauzinhos...", count.toNumber());
-        alert("Recuperado o número de tchauzinhos...", count.toNumber());
+
       } else {
         console.log("Objeto Ethereum não encontrado!");
       }
@@ -100,7 +100,6 @@ export default function App() {
         count = await wavePortalContract.getTotalWaves();
         console.log("Total de tchauzinhos recuperado... Nmro:", count.toNumber());
         
-        alert("Voce enviou um tchauzinho, agora temos um total de: ", count.toNumber());
       } else {
         console.log("Objeto Ethereum não encontrado!");
       }
