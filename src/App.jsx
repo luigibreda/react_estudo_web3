@@ -130,7 +130,8 @@ export default function App() {
         <button className="waveButton" onClick={wave2}>
           Ler os Tchauzinho 🌟
         </button>
-        )}
+        )} 
+        
         
         {currentAccount && (
         <button className="waveButton" onClick={wave3}>
