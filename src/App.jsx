@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
 import './App.css';
-import abi from "./utils/WavePortal.json";
+import { ethers } from "ethers";
+import abi from "./Utils/WavePortal.json"
 
-export default function App() {
 
+const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
-
-  const contractAddress = "0x7C8823A73e79740Adb6400C6EddBdFbe278934D8";
-  const contractABI = abi.abi;
+  const [allWaves, setAllWaves] = useState([]);
+  const contractAddress = "0xAA61131A4340d1d6609c7D534e626a3b0E89aF24"
+  const contractABI = abi.abi
   
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
 
       if (!ethereum) {
-        console.log("Garanta que possua a Metamask instalada!");
+        console.log("Make sure you have metamask!");
         return;
       } else {
-        console.log("Temos o objeto ethereum", ethereum);
+        console.log("We have the ethereum object", ethereum);
       }
 
-      const accounts = await ethereum.request({ method: "eth_accounts" });
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
 
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log("Encontrada a conta autorizada:", account);
-        setCurrentAccount(account)
+        console.log("Found an authorized account:", account);
+        setCurrentAccount(account);
       } else {
-        console.log("Nenhuma conta autorizada foi encontrada")
+        console.log("No authorized account found")
       }
     } catch (error) {
       console.log(error);
@@ -36,27 +36,28 @@ export default function App() {
   }
 
   /**
-  * Implemente aqui o seu método connectWallet
+  * Implement your connectWallet method here
   */
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
 
       if (!ethereum) {
-        alert("MetaMask encontrada!");
+        alert("Get MetaMask!");
         return;
       }
 
       const accounts = await ethereum.request({ method: "eth_requestAccounts" });
 
-      console.log("Conectado", accounts[0]);
-      setCurrentAccount(accounts[0]);
-    } catch (error) {
-      console.log(error)
+      console.log("Connected", accounts[0]);
+      setCurrentAccount(accounts[0]); 
+      } catch (error) {
+        console.log(error)
+        } 
     }
-  }
 
-  const wave2 = async () => {
+  /* Read how many waves from smart contract */
+  const wave = async () => {
     try {
       const { ethereum } = window;
 
@@ -66,93 +67,104 @@ export default function App() {
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
         let count = await wavePortalContract.getTotalWaves();
-        console.log("Recuperado o número de tchauzinhos...", count.toNumber());
-        alert("Recuperado o número de tchauzinhos...", count.toNumber());
-      } else {
-        console.log("Objeto Ethereum não encontrado!");
-      }
-    } catch (error) {
-      console.log(error)
-    }
-}
-
-  const wave3 = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-        let count = await wavePortalContract.getTotalWaves();
-        console.log("Recuperado o número de tchauzinhos...", count.toNumber());
+        console.log("Retrieved total wave count...", count.toNumber());
+        document.querySelector('.wave-count').innerHTML = "The total wave count is: " + count;
 
         /*
-        * Executar o tchauzinho a partir do contrato inteligente
+        * Execute the actual wave from your smart contract - eg. write to blockchain
         */
-        const waveTxn = await wavePortalContract.wave();
-        console.log("Minerando....", waveTxn.hash);
+        const waveTxn = await wavePortalContract.wave("this is a message");
+        console.log("Mining...", waveTxn.hash);
 
         await waveTxn.wait();
-        console.log("Minerado -- ", waveTxn.hash);
+        console.log("Mined -- ", waveTxn.hash);
 
         count = await wavePortalContract.getTotalWaves();
-        console.log("Total de tchauzinhos recuperado... Nmro:", count.toNumber());
-        
-        alert("Voce enviou um tchauzinho, agora temos um total de: ", count.toNumber());
+        console.log("Retrieved total wave count...", count.toNumber());
+        document.querySelector('.wave-count').innerHTML = "The total wave count is: " + count;
       } else {
-        console.log("Objeto Ethereum não encontrado!");
+        console.log("Ethereum object doesn't exist!");
       }
     } catch (error) {
       console.log(error)
     }
   }
-  
+
+
+  const getAllWaves = async () => {
+      try {
+        if (window.ethereum) {
+          const provider = new ethers.providers.Web3Provider
+          const signer = provider.getSigner();
+          const wavePortalContract = new ethers.Contract(contractAddress, wavePortal.abi, signer);
+
+          const waves = await wavePortalContract.getAllWaves();
+
+          let wavesCleaned = [];
+          waves.forEach(wave => {
+            wavesCleaned.push({
+              address: wave.waver,
+              timestamp: new Date(wave.timestamp * 1000),
+              message: wave.message
+            });
+          });
+
+          setAllWaves(wavesCleaned);
+        } else {
+          console.log("Ethereum object doesn't exist!")
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
   useEffect(() => {
     checkIfWalletIsConnected();
   }, [])
-
-  const wave = () => {
-    
-  }
-
+  
   return (
     <div className="mainContainer">
 
       <div className="dataContainer">
         <div className="header">
-        👋 Olá Pessoal!
+        👋 Hey there!
         </div>
 
         <div className="bio">
-        Eu sou o Luigi e trabalho com desenvolvimento e programação a mais de 10 anos, sabia? Legal, né? <br /><br /> Conecte sua carteira Metamask wallet ou qualquer outra e me manda um tchauzinho!
+        I'm James :) I work in VC, deeply focussed on world-changing technologies.
+        HMU on <a href="https://www.linkedin.com/in/james-baker3004/">Linkedin</a> if you want to chat VC, investing, tech, money, or anything!
+        </div>
+        <div className="bio">
+         I'm a complete novice coder - this is part of my learning journey! Connect your Ethereum wallet and wave at me to keep my dev journey going!
         </div>
 
-        {currentAccount && (
-        <button className="waveButton" onClick={wave2}>
-          Ler os Tchauzinho 🌟
-        </button>
-        )} 
         
 
-        {currentAccount && (
-        <button className="waveButton" onClick={wave3}>
-          Mandar Tchauzinho 🌟
-        </button> 
-        )}
-        
-        {/*
-        * Se não existir currentAccount, apresente este botão
-        */}
-        
+        <div className="bio wave-count"></div>
+
+        <button className="waveButton" onClick={wave}>
+          Send me a Wave!
+        </button>
+
+        {/* If there is no currentAccount render this button*/}
         {!currentAccount && (
           <button className="waveButton" onClick={connectWallet}>
-            Conectar carteira
+            Connect Wallet
           </button>
         )}
+        
+        {allWaves.map((wave, index) => {
+          return (
+            <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
+              <div>Address: {wave.address}</div>
+              <div>Time: {wave.timestamp.toString()}</div>
+              <div>Message: {wave.message}</div>
+            </div>)
+        })}
+
       </div>
-      
     </div>
   );
 }
+
+export default App
