@@ -7,6 +7,8 @@ export default function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
 
+  const [mining, setMining] = useState(false);
+  
   const contractAddress = "0xAA61131A4340d1d6609c7D534e626a3b0E89aF24";
   const contractABI = abi.abi;
   
@@ -93,10 +95,12 @@ export default function App() {
         */
         const waveTxn = await wavePortalContract.wave();
         console.log("Minerando....", waveTxn.hash);
-
+        setMining(true);
+        
         await waveTxn.wait();
         console.log("Minerado -- ", waveTxn.hash);
-
+        setMining(false);
+        
         count = await wavePortalContract.getTotalWaves();
         console.log("Total de tchauzinhos recuperado... Nmro:", count.toNumber());
         
@@ -137,9 +141,9 @@ export default function App() {
         
 
         {currentAccount && (
-        <button className="waveButton" onClick={wave3}>
-          Mandar Tchauzinho! 🌟
-        </button> 
+        <button className="waveButton" onClick={wave3} disabled={mining}>
+          {mining ? "Waving..." : "Wave at Me"}
+        </button>
         )}
         
         {/*
