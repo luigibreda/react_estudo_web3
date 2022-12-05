@@ -5,8 +5,6 @@ import abi from "./utils/WavePortal.json";
 
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
 
 export default function App() {
 
@@ -83,6 +81,7 @@ export default function App() {
   const wave3 = async () => {
     try {
       const { ethereum } = window;
+
       
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
@@ -91,7 +90,6 @@ export default function App() {
 
         let count = await wavePortalContract.getTotalWaves();
         console.log("Recuperado o número de tchauzinhos...", count.toNumber());
-        var resultadoTchauzinho = "Recuperado o número de tchauzinhos...", count.toNumber();
 
         /*
         * Executar o tchauzinho a partir do contrato inteligente
@@ -132,7 +130,7 @@ export default function App() {
         Eu sou o danicuki e já trabalhei com música, sabia? Legal, né? Conecte sua carteira  Ethereum wallet e me manda um tchauzinho!
         </div>
 
-        <Alert severity="success">{resultadoTchauzinho}</Alert>
+        {true ? <div className="header"><br/><CircularProgress id="progressBar" /></div> : ''}
         
         {currentAccount && (
         <button className="waveButton" onClick={wave2}>
