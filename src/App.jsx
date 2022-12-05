@@ -152,10 +152,8 @@ export default function App() {
         )}
         
         {currentAccount && (
-        <input className="waveMessage" value={waveMessage} onChange={handleMsgChange}></input>
+        <input style="width: 100%;height: 40px;border-radius: 7px;border: 0px !important;" className="waveMessage" value={waveMessage} onChange={handleMsgChange}></input>
         )}
-
-        <div class="text-input"><input type="text" id="input1" placeholder="Try typing something in here!"></input></div>
         
         {!currentAccount && (
             <button className="waveButton" onClick={connectWallet}>
