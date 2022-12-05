@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import './App.css';
 import abi from "./utils/WavePortal.json"
 
-import CircularProgress from '@mui/material/CircularProgress';
 
 export default function App() {
 
@@ -112,8 +111,6 @@ export default function App() {
         <button className="waveButton" onClick={wave}>
           Mandar Tchauzinho 🌟
         </button>
-
-        <CircularProgress />
 
         <button className="waveButton" onClick={wave} disabled={mining}>
           {mining ? "Waving..." : "Wave at Me"}
