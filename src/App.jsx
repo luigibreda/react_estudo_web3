@@ -7,7 +7,7 @@ export default function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
 
-  const contractAddress = "0x3cbFb8de749e6e4E1eF5869C6870Cfe56AcD4580";
+  const contractAddress = "0x2E5097b7032D4CC94FBE29028553804b1b5B9D07";
   const contractABI = abi.abi;
   
   const checkIfWalletIsConnected = async () => {
@@ -132,7 +132,7 @@ export default function App() {
         </button>
         )} 
         
-        
+
         {currentAccount && (
         <button className="waveButton" onClick={wave3}>
           Mandar Tchauzinho 🌟
