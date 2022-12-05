@@ -165,6 +165,7 @@ export default function App() {
         {waves.map((wave, index) => (
           <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
               <div>Hora: {new Date(wave.timestamp*1000).toISOString()}</div>
+              <div>Mensagem: {wave.address}</div>
               <div>Mensagem: {wave.message}</div>
             </div>)
         )}
