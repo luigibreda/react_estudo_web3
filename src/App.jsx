@@ -108,14 +108,16 @@ export default function App() {
         Eu sou o danicuki e já trabalhei com música, sabia? Legal, né? Conecte sua carteira  Ethereum wallet e me manda um tchauzinho!
         </div>
 
+        {currentAccount && (
         <button className="waveButton" onClick={wave}>
           Mandar Tchauzinho 🌟
         </button>
 
         <button className="waveButton" onClick={wave} disabled={mining}>
-          {mining ? "Waving..." : "Wave at Me"}
+          {mining ? "Enviando..." : "Envie um tchauzinho! 🌟"}
         </button>
-        
+        )}
+
         {/*
         * Se não existir currentAccount, apresente este botão
         */}
