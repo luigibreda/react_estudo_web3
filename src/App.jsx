@@ -115,7 +115,7 @@ export default function App() {
         <button className="waveButton" onClick={wave}>
           Mandar Tchauzinho 🌟
         </button>
-        <CircularProgress />
+
         <button className="waveButton" onClick={wave} disabled={mining}>
           {mining ? "Waving..." : "Mandar Tchauzinho 🌟"}
         </button>
