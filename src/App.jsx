@@ -156,9 +156,13 @@ export default function App() {
         )}
 
         {!currentAccount && (
-            <button className="connectButton" onClick={connectWallet}>
+            <button className="waveMessage" onClick={connectWallet}>
               Conectar carteira
             </button>
+
+          <button className="waveButton" onClick={connectWallet}>
+          Conectar carteira
+        </button>
         )}
 
         {waves.map((wave, index) => (
