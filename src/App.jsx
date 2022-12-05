@@ -81,15 +81,16 @@ export default function App() {
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractAbi, signer);
         const result = await wavePortalContract.getAllWaves(signer.getAddress());
-        const {0: messages, 1: timestamps} = result;
+
         let wavesCleaned = [];
-        for (let i = 0; i < messages.length; i++) {
+        result.forEach(wave => {
           wavesCleaned.push({
-            address: address[i],
-            message: messages[i],
-            timestamp: timestamps[i],
+            address: wave.waver,
+            timestamp: new Date(wave.timestamp * 1000),
+            message: wave.message
           });
-        }
+        });
+
         setWaves(wavesCleaned);
       }
     } catch(err) {
