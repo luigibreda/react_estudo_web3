@@ -7,11 +7,48 @@ import abi from "./utils/WavePortal.json"
 export default function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
-  const contractAddress = "0x178180c290034796A7C2A4eD370B01b62bDA7e55";
+  const [allWaves, setAllWaves] = useState([]);
+  const contractAddress = "0x27C85420049B016C0070D02F68844A1567455B6C";
   const contractABI = abi.abi;
   
   const [mining, setMining] = useState(false);
   
+  const getAllWaves = async () => {
+    try {
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+        /*
+         * Chama o método getAllWaves do seu contrato inteligente
+         */
+        const waves = await wavePortalContract.getAllWaves();
+
+
+        /*
+         * Apenas precisamos do endereço, data/horário, e mensagem na nossa tela, então vamos selecioná-los
+         */
+        let wavesCleaned = [];
+        waves.forEach(wave => {
+          wavesCleaned.push({
+            address: wave.waver,
+            timestamp: new Date(wave.timestamp * 1000),
+            message: wave.message
+          });
+        });
+
+        /*
+         * Armazenando os dados
+         */
+        setAllWaves(wavesCleaned);
+      } else {
+        console.log("Objeto Ethereum não existe!")
+      }
+    }
+  }
+
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
@@ -73,7 +110,7 @@ export default function App() {
         /*
         * Executar o aceno a partir do contrato inteligente
         */
-        const waveTxn = await wavePortalContract.wave();
+        const waveTxn = await wavePortalContract.wave("esta é uma mensagem");
         console.log("Minerando...", waveTxn.hash);
         setMining(true);
 
@@ -122,6 +159,16 @@ export default function App() {
             Conectar carteira
           </button>
         )}
+
+        {allWaves.map((wave, index) => {
+          return (
+            <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
+              <div>Endereço: {wave.address}</div>
+              <div>Data/Horário: {wave.timestamp.toString()}</div>
+              <div>Mensagem: {wave.message}</div>
+            </div>)
+        })}
+
       </div>
       
     </div>
