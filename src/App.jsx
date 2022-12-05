@@ -21,7 +21,7 @@ export default function App() {
         </div>
 
         <button className="waveButton" onClick={wave}>
-          Mandar Tchauzinho 🌟
+          Mandar Tchauzinho 2 🌟
         </button>
       </div>
     </div>
