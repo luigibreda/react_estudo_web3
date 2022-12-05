@@ -92,7 +92,7 @@ export default function App() {
         * Executar o tchauzinho a partir do contrato inteligente
         */
         const waveTxn = await wavePortalContract.wave();
-        console.log("Minerando...", waveTxn.hash);
+        console.log("Minerando....", waveTxn.hash);
 
         await waveTxn.wait();
         console.log("Minerado -- ", waveTxn.hash);
