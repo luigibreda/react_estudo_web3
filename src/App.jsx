@@ -152,7 +152,7 @@ export default function App() {
         )}
         
         {currentAccount && (
-        <input style="width: 100%;height: 40px;border-radius: 7px;border: 0px !important;" className="waveMessage" value={waveMessage} onChange={handleMsgChange}></input>
+        <input className="waveMessage" value={waveMessage} onChange={handleMsgChange}></input>
         )}
         
         {!currentAccount && (
