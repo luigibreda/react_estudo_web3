@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import './App.css';
-import abi from "./utils/WavePortal.json";
+import abi from "./utils/WavePortal.json"
 
 export default function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
-
   const contractAddress = "0x077245Cd5A10BFb13dc172D33f908197fA1a228E";
   const contractABI = abi.abi;
   
@@ -56,7 +55,7 @@ export default function App() {
     }
   }
 
-  const wave2 = async () => {
+  const wave = async () => {
     try {
       const { ethereum } = window;
 
@@ -64,41 +63,21 @@ export default function App() {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-        let count = await wavePortalContract.getTotalWaves();
-        console.log("Recuperado o número de tchauzinhos...", count.toNumber());
-
-      } else {
-        console.log("Objeto Ethereum não encontrado!");
-      }
-    } catch (error) {
-      console.log(error)
-    }
-}
-
-  const wave3 = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-
+ 
         let count = await wavePortalContract.getTotalWaves();
         console.log("Recuperado o número de tchauzinhos...", count.toNumber());
 
         /*
-        * Executar o tchauzinho a partir do contrato inteligente
+        * Executar o aceno a partir do contrato inteligente
         */
         const waveTxn = await wavePortalContract.wave();
-        console.log("Minerando....", waveTxn.hash);
+        console.log("Minerando...", waveTxn.hash);
 
         await waveTxn.wait();
         console.log("Minerado -- ", waveTxn.hash);
 
         count = await wavePortalContract.getTotalWaves();
-        console.log("Total de tchauzinhos recuperado... Nmro:", count.toNumber());
+        console.log("Total de tchauzinhos recuperado...", count.toNumber());
         
       } else {
         console.log("Objeto Ethereum não encontrado!");
@@ -107,14 +86,10 @@ export default function App() {
       console.log(error)
     }
   }
-  
+
   useEffect(() => {
     checkIfWalletIsConnected();
   }, [])
-
-  const wave = () => {
-    
-  }
 
   return (
     <div className="mainContainer">
@@ -125,26 +100,15 @@ export default function App() {
         </div>
 
         <div className="bio">
-        Eu sou o Luigi e trabalho com desenvolvimento e programação a mais de 10 anos, sabia? Legal, né? <br /><br /> Conecte sua carteira Metamask wallet ou qualquer outra e me manda um tchauzinho!
+        Eu sou o danicuki e já trabalhei com música, sabia? Legal, né? Conecte sua carteira  Ethereum wallet e me manda um tchauzinho!
         </div>
 
-        {currentAccount && (
-        <button className="waveButton" onClick={wave2}>
-          Ler os Tchauzinho 🌟
+        <button className="waveButton" onClick={wave}>
+          Mandar Tchauzinho 🌟
         </button>
-        )} 
-        
-
-        {currentAccount && (
-        <button className="waveButton" onClick={wave3}>
-          Mandar Tchauzinho! 🌟
-        </button> 
-        )}
-        
         {/*
         * Se não existir currentAccount, apresente este botão
         */}
-        
         {!currentAccount && (
           <button className="waveButton" onClick={connectWallet}>
             Conectar carteira
