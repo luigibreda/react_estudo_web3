@@ -166,7 +166,7 @@ export default function App() {
 {allWaves.map((wave, index) => {
           return (
             <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
-              <div>Endereço: {wave.address}</div>
+              <div>Endereçow: {wave.address}</div>
               <div>Data/Horário: {wave.timestamp.toString()}</div>
               <div>Mensagem: {wave.message}</div>
             </div>)
