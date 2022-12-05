@@ -145,10 +145,16 @@ export default function App() {
         Conecte sua carteira Ethereum wallet e me manda um tchauzinho!
         </div>
 
+        {currentAccount && (
         <button className="waveButton" onClick={wave} disabled={mining}>
           {mining ? "Enviando..." : "Envie um tchauzinho! 🌟"}
         </button>
+        )}
+        
+        {currentAccount && (
         <input className="waveMessage" value={waveMessage} onChange={handleMsgChange}></input>
+        )}
+        
         {!currentAccount && (
             <button className="waveButton" onClick={connectWallet}>
             Conectar carteira
