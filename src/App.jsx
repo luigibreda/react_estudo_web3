@@ -97,7 +97,7 @@ export default function App() {
         console.log("Minerado -- ", waveTxn.hash);
 
         count = await wavePortalContract.getTotalWaves();
-        console.log("Total de tchauzinhos recuperado...", count.toNumber());
+        console.log("Total de tchauzinhos recuperado... Nmro:", count.toNumber());
       } else {
         console.log("Objeto Ethereum não encontrado!");
       }
