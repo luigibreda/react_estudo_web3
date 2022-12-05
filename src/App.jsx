@@ -9,7 +9,7 @@ export default function App() {
   const [mining, setMining] = useState(false);
   const [waves, setWaves] = useState([]);
   const [waveMessage, setWaveMessage] = useState("<Your message here...>");
-  const contractAddress = "0x27C85420049B016C0070D02F68844A1567455B6C";
+  const contractAddress = "0x7f1bA6e8A664139115C58F70f07374Fa978b08Fd";
   const contractAbi = abi.abi;
 
   const checkIfWalletIsConnected = async () => {
@@ -141,26 +141,19 @@ export default function App() {
         </div>
 
         <div className="bio">
-        Eu sou o Luigi e já trabalhei com música, sabia? Legal, né? 
-        Conecte sua carteira Ethereum wallet e me manda um tchauzinho!
+        I am Robert and I really love this tutorial.
+        Connect your Ethereum wallet and wave at me!
         </div>
 
-        {currentAccount && (
         <button className="waveButton" onClick={wave} disabled={mining}>
-          {mining ? "Enviando..." : "Envie um tchauzinho! 🌟"}
+          {mining ? "Waving..." : "Wave at Me"}
         </button>
-        )}
-
-        {currentAccount && (
         <input className="waveMessage" value={waveMessage} onChange={handleMsgChange}></input>
-        )}
-
         {!currentAccount && (
-            <button className="waveButton" onClick={connectWallet}>
-            Conectar carteira
+            <button className="connectButton" onClick={connectWallet}>
+              Connect Wallet
             </button>
         )}
-
         {waves.map((wave, index) => (
           <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
               <div>Time: {new Date(wave.timestamp*1000).toISOString()}</div>
