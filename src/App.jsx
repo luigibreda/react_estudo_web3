@@ -80,12 +80,12 @@ export default function App() {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractAbi, signer);
-        const result = await wavePortalContract.getWaves(signer.getAddress());
+        const result = await wavePortalContract.getAllWaves(signer.getAddress());
         const {0: messages, 1: timestamps} = result;
         let wavesCleaned = [];
         for (let i = 0; i < messages.length; i++) {
           wavesCleaned.push({
-            address: waver[i],
+            address: address[i],
             message: messages[i],
             timestamp: timestamps[i],
           });
