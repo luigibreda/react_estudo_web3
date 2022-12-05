@@ -7,7 +7,7 @@ export default function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
 
-  const contractAddress = "0x2E5097b7032D4CC94FBE29028553804b1b5B9D07";
+  const contractAddress = "0x7C8823A73e79740Adb6400C6EddBdFbe278934D8";
   const contractABI = abi.abi;
   
   const checkIfWalletIsConnected = async () => {
@@ -67,6 +67,7 @@ export default function App() {
 
         let count = await wavePortalContract.getTotalWaves();
         console.log("Recuperado o número de tchauzinhos...", count.toNumber());
+        alert("Recuperado o número de tchauzinhos...", count.toNumber());
       } else {
         console.log("Objeto Ethereum não encontrado!");
       }
@@ -98,6 +99,8 @@ export default function App() {
 
         count = await wavePortalContract.getTotalWaves();
         console.log("Total de tchauzinhos recuperado... Nmro:", count.toNumber());
+        
+        alert("Voce enviou um tchauzinho, agora temos um total de: ", count.toNumber());
       } else {
         console.log("Objeto Ethereum não encontrado!");
       }
@@ -123,7 +126,7 @@ export default function App() {
         </div>
 
         <div className="bio">
-        Eu sou o Luigi e trabalho com desenvolvimento e programação a mais de 10 anos, sabia? Legal, né? <br /> Conecte sua carteira Metamask wallet ou qualquer outra e me manda um tchauzinho!
+        Eu sou o Luigi e trabalho com desenvolvimento e programação a mais de 10 anos, sabia? Legal, né? <br /><br /> Conecte sua carteira Metamask wallet ou qualquer outra e me manda um tchauzinho!
         </div>
 
         {currentAccount && (
