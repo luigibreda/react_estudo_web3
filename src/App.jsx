@@ -117,7 +117,7 @@ export default function App() {
         </button>
 
         <button className="waveButton" onClick={wave} disabled={mining}>
-          {mining ? "<CircularProgress />" : "Mandar Tchauzinho 🌟"}
+          {mining ? (<CircularProgress />) : "Mandar Tchauzinho 🌟"}
         </button>
 
         )}
