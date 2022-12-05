@@ -123,7 +123,7 @@ export default function App() {
         </div>
 
         <div className="bio">
-        Eu sou o danicuki e já trabalhei com música, sabia? Legal, né? Conecte sua carteira  Ethereum wallet e me manda um tchauzinho!
+        Eu sou o Luigi e trabalho com desenvolvimento e programação a mais de 10 anos, sabia? Legal, né? <br /> Conecte sua carteira Metamask wallet ou qualquer outra e me manda um tchauzinho!
         </div>
 
         {currentAccount && (
