@@ -144,12 +144,6 @@ export default function App() {
         Eu sou o Luigi e já trabalhei com música, sabia? Legal, né? 
         Conecte sua carteira Ethereum wallet e me manda um tchauzinho!
         </div>
-
-        {currentAccount && (
-        <button className="waveButton" onClick={wave} disabled={mining}>
-          {mining ? "Enviando..." : "Envie um tchauzinho! 🌟"}
-        </button>
-        )}
         
         {currentAccount && (
         <input className="waveMessage" value={waveMessage} onChange={handleMsgChange}></input>
@@ -160,10 +154,17 @@ export default function App() {
             Conectar carteira
           </button>
         )}
+
+        {currentAccount && (
+        <button className="waveButton" onClick={wave} disabled={mining}>
+          {mining ? "Enviando..." : "Envie um tchauzinho! 🌟"}
+        </button>
+        )}
+
         {waves.map((wave, index) => (
           <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
-              <div>Time: {new Date(wave.timestamp*1000).toISOString()}</div>
-              <div>Message: {wave.message}</div>
+              <div>Hora: {new Date(wave.timestamp*1000).toISOString()}</div>
+              <div>Mensagem: {wave.message}</div>
             </div>)
         )}
       </div>
