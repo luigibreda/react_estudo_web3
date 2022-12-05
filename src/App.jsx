@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import './App.css';
-import abi from "./utils/WavePortal.json"; 
+import abi from "./utils/WavePortal.json";
+
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 export default function App() {
 
@@ -78,24 +83,24 @@ export default function App() {
   const wave3 = async () => {
     try {
       const { ethereum } = window;
-
+      
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
+        let count = await wavePortalContract.getTotalWaves();
+        console.log("Recuperado o número de tchauzinhos...", count.toNumber());
+        var resultadoTchauzinho = "Recuperado o número de tchauzinhos...", count.toNumber();
+
         /*
         * Executar o tchauzinho a partir do contrato inteligente
         */
-        var progressBar = true;
-        console.log(progressBar);
         const waveTxn = await wavePortalContract.wave();
         console.log("Minerando...", waveTxn.hash);
 
         await waveTxn.wait();
         console.log("Minerado -- ", waveTxn.hash);
-        progressBar = false;
-        console.log(progressBar);
 
         count = await wavePortalContract.getTotalWaves();
         console.log("Total de tchauzinhos recuperado...", count.toNumber());
@@ -127,23 +132,24 @@ export default function App() {
         Eu sou o danicuki e já trabalhei com música, sabia? Legal, né? Conecte sua carteira  Ethereum wallet e me manda um tchauzinho!
         </div>
 
+        <Alert severity="success">{resultadoTchauzinho}</Alert>
+        
         {currentAccount && (
         <button className="waveButton" onClick={wave2}>
           Ler os Tchauzinho 🌟
         </button>
         )}
-
-
         
         {currentAccount && (
         <button className="waveButton" onClick={wave3}>
           Mandar Tchauzinho 🌟
-        </button>
+        </button> 
         )}
         
         {/*
         * Se não existir currentAccount, apresente este botão
         */}
+        
         {!currentAccount && (
           <button className="waveButton" onClick={connectWallet}>
             Conectar carteira
