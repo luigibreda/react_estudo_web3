@@ -85,6 +85,7 @@ export default function App() {
         let wavesCleaned = [];
         for (let i = 0; i < messages.length; i++) {
           wavesCleaned.push({
+            address: address[i],
             message: messages[i],
             timestamp: timestamps[i],
           });
