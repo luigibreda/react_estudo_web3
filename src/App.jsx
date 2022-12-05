@@ -109,7 +109,7 @@ export default function App() {
         /*
         * Executar o aceno a partir do contrato inteligente
         */
-        const waveTxn = await wavePortalContract.wave();
+        const waveTxn = await wavePortalContract.wave("esta e uma mensagem de teste");
         console.log("Minerando...", waveTxn.hash);
         setMining(true);
 
