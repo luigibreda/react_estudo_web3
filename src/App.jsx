@@ -9,7 +9,7 @@ export default function App() {
   const [mining, setMining] = useState(false);
   const [waves, setWaves] = useState([]);
   const [waveMessage, setWaveMessage] = useState("Sua mensagem coloque aqui.");
-  const contractAddress = "0x27C85420049B016C0070D02F68844A1567455B6C";
+  const contractAddress = "0xc3631190d1C7c5b552Db682Cf62E5CA44561119D";
   const contractAbi = abi.abi;
 
   const checkIfWalletIsConnected = async () => {
