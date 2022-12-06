@@ -22,7 +22,7 @@
 ### Intruções de instalação
 
 ``` bash
-# instalar dependencias
+# instalar dependencias =)
 $ npm install
 
 # iniciar servidor local
