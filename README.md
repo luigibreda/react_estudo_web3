@@ -22,18 +22,13 @@
 ### Intruções de instalação
 
 ``` bash
+
+# clone a aplicação 
+$ git clone https://github.com/luigibreda/react_estudo_web3/
+
 # instalar dependencias =)
 $ npm install
 
-# iniciar servidor local
-$ npx hardhat node
-
-# executar scripts de testes
-$ npx hardhat run scripts/run.js --network localhost
-
-# deploy do smart contract
-$ npx hardhat run scripts/deploy.js --network localhost
-
 # iniciar aplicação
-$ npm run dev
+$ npm start
 ```
