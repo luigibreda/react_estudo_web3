@@ -151,16 +151,17 @@ export default function App() {
     console.log('log1');
     getAllWaves();
 
-    const onNewWave = (message, timestamp) => {
-      console.log("Mensagem recebida:", message);
-      setWaves(prevState => [
-        prevState,
+    const onNewWave = (from, timestamp, message) => {
+      console.log("NewWave", from, timestamp, message);
+      setAllWaves(prevState => [
+        ...prevState,
         {
-          message,
-          timestamp
-        }
+          address: from,
+          timestamp: new Date(timestamp * 1000),
+          message: message,
+        },
       ]);
-    }
+    };
 
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
