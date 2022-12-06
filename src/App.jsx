@@ -9,7 +9,7 @@ export default function App() {
   const [mining, setMining] = useState(false);
   const [waves, setWaves] = useState([]);
   const [waveMessage, setWaveMessage] = useState("Sua mensagem coloque aqui.");
-  const contractAddress = "0xc3631190d1C7c5b552Db682Cf62E5CA44561119D";
+  const contractAddress = "0x040576E4be8E0387a9e8ABF716F83d8c64ACb9c1";
   const contractAbi = abi.abi;
 
   const checkIfWalletIsConnected = async () => {
@@ -56,7 +56,7 @@ export default function App() {
         const signer = provider.getSigner();
         const wavePortalContract = new ethers.Contract(contractAddress, contractAbi, signer);
         
-        const waveTxn = await wavePortalContract.wave(waveMessage, {gasLimit: 300000});
+        const waveTxn = await wavePortalContract.wave(waveMessage, {gasLimit: 300000 });
         console.log("Mining ... ", waveTxn.hash);
         setMining(true);
         await waveTxn.wait();
@@ -152,9 +152,9 @@ export default function App() {
     getAllWaves();
 
     const onNewWave = (message, timestamp) => {
-      console.log("Message arrived:", message);
+      console.log("Mensagem recebida:", message);
       setWaves(prevState => [
-        ...prevState,
+        prevState,
         {
           message,
           timestamp
